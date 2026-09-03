@@ -1,4 +1,5 @@
-﻿using ApiPruebaAudi.Application.DTOs.Note;
+﻿using ApiPruebaAudi.Application.DTOs;
+using ApiPruebaAudi.Application.DTOs.Note;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ namespace ApiPruebaAudi.Application.Interfaces
     {
         Task<NoteDTO> Create(CreateNoteDTO dto);
         Task<IEnumerable<NoteDTO>> GetAllAsync();
+        Task<PagedResponse<NoteDTO>> GetNotes(
+        int pageNumber,
+        int pageSize);
         Task<NoteDTO> GetById(int id);
         Task Update(int id, CreateNoteDTO dto);
         Task Delete(int id);

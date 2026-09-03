@@ -39,7 +39,7 @@ namespace ApiPruebaAudi.Application.Services
             return _mapper.Map<IEnumerable<StudentDTO>>(student);
         }
 
-        public async Task<PagedResponse<StudentDTO>> GetStudentsAsync(
+        public async Task<PagedResponse<StudentDTO>> GetStudents(
         int pageNumber,
         int pageSize)
         {
@@ -61,7 +61,7 @@ namespace ApiPruebaAudi.Application.Services
             var student = await _repository.GetByIdAsync(id);
 
             if (student == null)
-                throw new NotFoundException("Nota no encontrada.");
+                throw new NotFoundException("estudiante no encontrado.");
 
             return _mapper.Map<StudentDTO>(student);
         }
@@ -71,7 +71,7 @@ namespace ApiPruebaAudi.Application.Services
             var student = await _repository.GetByIdAsync(id);
 
             if (student == null)
-                throw new NotFoundException($"No existe una nota con el id {id}");
+                throw new NotFoundException($"No existe un estudiante con el id {id}");
 
             _mapper.Map(dto, student);
 
@@ -83,7 +83,7 @@ namespace ApiPruebaAudi.Application.Services
             var student = await _repository.GetByIdAsync(id);
 
             if (student == null)
-                throw new NotFoundException($"No existe una nota con el id {id}");
+                throw new NotFoundException($"No existe un estudiante con el id {id}");
 
             await _repository.DeleteAsync(student);
         }

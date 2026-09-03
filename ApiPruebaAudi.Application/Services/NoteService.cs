@@ -15,16 +15,32 @@ namespace ApiPruebaAudi.Application.Services
     public class NoteService : INoteService
     {
         private readonly INoteRepository _repository;
+        private readonly IStudentRepository _studentRepository;
+        private readonly ITeacherRepository _teacherRepository;
         private readonly IMapper _mapper;
 
-        public NoteService(INoteRepository repository, IMapper mapper)
+        public NoteService(INoteRepository repository, IMapper mapper, IStudentRepository studentRepository, ITeacherRepository teacherRepository)
         {
             _repository = repository;
             _mapper = mapper;
+            _studentRepository = studentRepository;
+            _teacherRepository = teacherRepository;
         }
 
         public async Task<NoteDTO> Create(CreateNoteDTO dto)
         {
+            var student = await _studentRepository.GetByIdAsync(dto.StudentId);
+
+            if (student == null)
+                throw new NotFoundException(
+                    $"No existe un estudiante con el id {dto.StudentId}.");
+
+            var teacher = await _teacherRepository.GetByIdAsync(dto.TeacherId);
+
+            if (teacher == null)
+                throw new NotFoundException(
+                    $"No existe un profesor con el id {dto.TeacherId}.");
+
             var note = _mapper.Map<Note>(dto);
 
             await _repository.AddAsync(note);
@@ -39,7 +55,7 @@ namespace ApiPruebaAudi.Application.Services
             return _mapper.Map<IEnumerable<NoteDTO>>(note);
         }
 
-        public async Task<PagedResponse<NoteDTO>> GetNotesAsync(
+        public async Task<PagedResponse<NoteDTO>> GetNotes(
         int pageNumber,
         int pageSize)
         {
@@ -68,6 +84,19 @@ namespace ApiPruebaAudi.Application.Services
 
         public async Task Update(int id, CreateNoteDTO dto)
         {
+
+            var student = await _studentRepository.GetByIdAsync(dto.StudentId);
+
+            if (student == null)
+                throw new NotFoundException(
+                    $"No existe un estudiante con el id {dto.StudentId}.");
+
+            var teacher = await _teacherRepository.GetByIdAsync(dto.TeacherId);
+
+            if (teacher == null)
+                throw new NotFoundException(
+                    $"No existe un profesor con el id {dto.TeacherId}.");
+
             var note = await _repository.GetByIdAsync(id);
 
             if (note == null)

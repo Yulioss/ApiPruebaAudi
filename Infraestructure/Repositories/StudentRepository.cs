@@ -56,13 +56,13 @@ namespace ApiPruebaAudi.Infraestructure.Repositories
        int pageNumber,
        int pageSize)
         {
-            var query = _context.Notes
+            var query = _context.Students
                 .AsNoTracking();
 
             var totalItems = await query.CountAsync();
 
             var student = await query
-                .OrderBy(x => x.NoteId)
+                .OrderBy(x => x.StudentId)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .Select(x => new StudentDTO

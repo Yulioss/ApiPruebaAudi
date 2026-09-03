@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ApiPruebaAudi.Infraestructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260903164502_InitialCreate")]
+    [Migration("20260903221835_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -64,8 +64,8 @@ namespace ApiPruebaAudi.Infraestructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.HasKey("StudentId");
 
@@ -82,8 +82,8 @@ namespace ApiPruebaAudi.Infraestructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.HasKey("TeacherId");
 

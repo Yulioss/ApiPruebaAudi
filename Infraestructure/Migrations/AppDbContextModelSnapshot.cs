@@ -61,8 +61,8 @@ namespace ApiPruebaAudi.Infraestructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.HasKey("StudentId");
 
@@ -79,8 +79,8 @@ namespace ApiPruebaAudi.Infraestructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.HasKey("TeacherId");
 

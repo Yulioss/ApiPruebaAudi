@@ -14,7 +14,7 @@ namespace ApiPruebaAudi.Infraestructure.Configuration
             builder.HasKey(c => c.StudentId);
 
             builder.Property(c => c.Name)
-                   .HasMaxLength(15)
+                   .HasMaxLength(50)
                    .IsRequired();
 
         }

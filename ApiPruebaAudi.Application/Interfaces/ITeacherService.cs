@@ -1,4 +1,5 @@
-﻿using ApiPruebaAudi.Application.DTOs.Student;
+﻿using ApiPruebaAudi.Application.DTOs;
+using ApiPruebaAudi.Application.DTOs.Student;
 using ApiPruebaAudi.Application.DTOs.Teacher;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,9 @@ namespace ApiPruebaAudi.Application.Interfaces
         Task<TeacherDTO> Create(CreateTeacherDTO dto);
         Task<TeacherDTO> GetById(int id);
         Task<IEnumerable<TeacherDTO>> GetAllAsync();
+        Task<PagedResponse<TeacherDTO>> GetTeachers(
+        int pageNumber,
+        int pageSize);
         Task Update(int id, CreateTeacherDTO dto);
         Task Delete(int id);
     }

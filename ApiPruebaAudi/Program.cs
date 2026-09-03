@@ -6,6 +6,7 @@ using ApiPruebaAudi.Infraestructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
+using ApiPruebaAudi.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +54,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
