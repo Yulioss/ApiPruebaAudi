@@ -1,5 +1,11 @@
+using ApiPruebaAudi.Application.Interfaces;
+using ApiPruebaAudi.Application.Mapings;
+using ApiPruebaAudi.Application.Services;
 using ApiPruebaAudi.Infraestructure.Data;
+using ApiPruebaAudi.Infraestructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +21,22 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddScoped<INoteService, NoteService>();
+builder.Services.AddScoped<ITeacherService, TeacherService>();
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<INoteRepository, NoteRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddProfile<NoteProfile>();
+    cfg.AddProfile<StudentProfile>();
+    cfg.AddProfile<TeacherProfile>();
+});
+
+var allowedOrigins = builder.Configuration
+    .GetSection("Cors:AllowedOrigins")
+    .Get<string[]>();
 var app = builder.Build();
 
 

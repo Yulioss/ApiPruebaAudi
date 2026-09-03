@@ -1,5 +1,6 @@
 ﻿using ApiPruebaAudi.Application.DTOs;
 using ApiPruebaAudi.Application.DTOs.Note;
+using ApiPruebaAudi.Application.Interfaces;
 using ApiPruebaAudi.Domain.Entities;
 using ApiPruebaAudi.Infraestructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace ApiPruebaAudi.Infraestructure.Repositories
 {
-    public class NoteRepository
+    public class NoteRepository: INoteRepository
     {
         private readonly AppDbContext _context;
 

@@ -9,10 +9,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ApiPruebaAudi.Application.DTOs.Student;
+using ApiPruebaAudi.Application.Interfaces;
 
 namespace ApiPruebaAudi.Infraestructure.Repositories
 {
-    public class StudentRepository
+    public class StudentRepository : IStudentRepository
     {
         private readonly AppDbContext _context;
 
