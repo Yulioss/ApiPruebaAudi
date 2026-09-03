@@ -21,6 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ApiPruebaAudi.Application\ApiPruebaAudi.Application.csproj" />
     <ProjectReference Include="..\Infraestructure\ApiPruebaAudi.Infraestructure.csproj" />
   </ItemGroup>
 
