@@ -47,13 +47,22 @@ namespace ApiPruebaAudi.Application.Services
                 throw new ArgumentException(
                     "El número de página debe ser mayor que 0.");
 
-            if (pageSize < 1 || pageSize > 100)
+            if (pageSize < 1 || pageSize > 1000)
                 throw new ArgumentException(
-                    "El tamaño de página debe estar entre 1 y 100.");
+                    "El tamaño de página debe estar entre 1 y 1000.");
 
-            return await _repository.GetPagedAsync(
+            var response = await _repository.GetPagedAsync(
                 pageNumber,
                 pageSize);
+
+            return new PagedResponse<StudentDTO>
+            {
+                Items = _mapper.Map<IEnumerable<StudentDTO>>(response.Items),
+                PageNumber = response.PageNumber,
+                PageSize = response.PageSize,
+                TotalItems = response.TotalItems,
+                TotalPages = response.TotalPages
+            };
         }
 
         public async Task<StudentDTO?> GetById(int id)

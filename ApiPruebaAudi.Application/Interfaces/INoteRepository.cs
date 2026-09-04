@@ -16,7 +16,7 @@ namespace ApiPruebaAudi.Application.Interfaces
         Task<Note?> GetByIdAsync(int id);
         Task UpdateAsync(Note note);
         Task DeleteAsync(Note note);
-        Task<PagedResponse<NoteDTO>> GetPagedAsync(
+        Task<PagedResponse<Note>> GetPagedAsync(
         int pageNumber,
         int pageSize);
     }

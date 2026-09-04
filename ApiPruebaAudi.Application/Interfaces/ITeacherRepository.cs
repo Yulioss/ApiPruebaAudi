@@ -17,7 +17,7 @@ namespace ApiPruebaAudi.Application.Interfaces
         Task<Teacher?> GetByIdAsync(int id);
         Task UpdateAsync(Teacher teacher);
         Task DeleteAsync(Teacher teacher);
-        Task<PagedResponse<TeacherDTO>> GetPagedAsync(
+        Task<PagedResponse<Teacher>> GetPagedAsync(
         int pageNumber,
         int pageSize);
     }

@@ -11,12 +11,14 @@ namespace ApiPruebaAudi.Application.DTOs.Note
     {
         public int NoteId { get; set; }
 
-        public required string Name { get; set; }
+        public  string Name { get; set; } = string.Empty;
 
         public decimal Value { get; set; }
 
         public int StudentId { get; set; }
+        public string StudentName { get; set; } = string.Empty;
 
         public int TeacherId { get; set; }
+        public string TeacherName { get; set; } = string.Empty;
     }
 }

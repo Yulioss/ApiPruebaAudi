@@ -15,7 +15,13 @@ namespace ApiPruebaAudi.Application.Mapings
         {
             CreateMap<CreateNoteDTO, Note>();
 
-            CreateMap<Note, NoteDTO>();
+            CreateMap<Note, NoteDTO>()
+            .ForMember(
+                dest => dest.StudentName,
+                opt => opt.MapFrom(src => src.Student.Name))
+            .ForMember(
+                dest => dest.TeacherName,
+                opt => opt.MapFrom(src => src.Teacher.Name));
         }
     }
 }

@@ -52,29 +52,24 @@ namespace ApiPruebaAudi.Infraestructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<PagedResponse<TeacherDTO>> GetPagedAsync(
-       int pageNumber,
-       int pageSize)
+        public async Task<PagedResponse<Teacher>> GetPagedAsync(
+        int pageNumber,
+        int pageSize)
         {
             var query = _context.Teachers
                 .AsNoTracking();
 
             var totalItems = await query.CountAsync();
 
-            var student = await query
+            var teachers = await query
                 .OrderBy(x => x.TeacherId)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
-                .Select(x => new TeacherDTO
-                {
-                    TeacherId = x.TeacherId,
-                    Name = x.Name
-                })
                 .ToListAsync();
 
-            return new PagedResponse<TeacherDTO>
+            return new PagedResponse<Teacher>
             {
-                Items = student,
+                Items = teachers,
                 PageNumber = pageNumber,
                 PageSize = pageSize,
                 TotalItems = totalItems,

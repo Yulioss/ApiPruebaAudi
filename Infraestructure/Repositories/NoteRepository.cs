@@ -51,12 +51,14 @@ namespace ApiPruebaAudi.Infraestructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<PagedResponse<NoteDTO>> GetPagedAsync(
-       int pageNumber,
-       int pageSize)
+        public async Task<PagedResponse<Note>> GetPagedAsync(
+        int pageNumber,
+        int pageSize)
         {
             var query = _context.Notes
-                .AsNoTracking();
+                .AsNoTracking()
+                .Include(x => x.Student)
+                .Include(x => x.Teacher);
 
             var totalItems = await query.CountAsync();
 
@@ -64,17 +66,9 @@ namespace ApiPruebaAudi.Infraestructure.Repositories
                 .OrderBy(x => x.NoteId)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
-                .Select(x => new NoteDTO
-                {
-                    NoteId = x.NoteId,
-                    Name = x.Name,
-                    Value = x.Value,
-                    StudentId = x.StudentId,
-                    TeacherId = x.TeacherId
-                })
                 .ToListAsync();
 
-            return new PagedResponse<NoteDTO>
+            return new PagedResponse<Note>
             {
                 Items = notes,
                 PageNumber = pageNumber,
