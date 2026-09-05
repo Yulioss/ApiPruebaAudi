@@ -18,6 +18,7 @@ namespace ApiPruebaAudi.Application.Interfaces
         Task DeleteAsync(Note note);
         Task<PagedResponse<Note>> GetPagedAsync(
         int pageNumber,
-        int pageSize);
+        int pageSize,
+        string? searchTerm = null);
     }
 }

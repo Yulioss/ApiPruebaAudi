@@ -41,7 +41,8 @@ namespace ApiPruebaAudi.Application.Services
 
         public async Task<PagedResponse<StudentDTO>> GetStudents(
         int pageNumber,
-        int pageSize)
+        int pageSize,
+        string? searchTerm = null)
         {
             if (pageNumber < 1)
                 throw new ArgumentException(
@@ -53,7 +54,8 @@ namespace ApiPruebaAudi.Application.Services
 
             var response = await _repository.GetPagedAsync(
                 pageNumber,
-                pageSize);
+                pageSize,
+                searchTerm);
 
             return new PagedResponse<StudentDTO>
             {

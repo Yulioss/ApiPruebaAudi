@@ -57,7 +57,8 @@ namespace ApiPruebaAudi.Application.Services
 
         public async Task<PagedResponse<NoteDTO>> GetNotes(
         int pageNumber,
-        int pageSize)
+        int pageSize,
+        string? searchTerm = null)
         {
             if (pageNumber < 1)
                 throw new ArgumentException(
@@ -69,7 +70,8 @@ namespace ApiPruebaAudi.Application.Services
 
             var response = await _repository.GetPagedAsync(
                 pageNumber,
-                pageSize);
+                pageSize,
+                searchTerm);
 
             return new PagedResponse<NoteDTO>
             {

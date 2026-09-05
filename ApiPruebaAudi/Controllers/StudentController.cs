@@ -27,11 +27,13 @@ namespace ApiPruebaAudi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetStudents(
         int pageNumber = 1,
-        int pageSize = 10)
+        int pageSize = 10,
+        string? searchTerm = null)
         {
             var result = await _studentService.GetStudents(
                 pageNumber,
-                pageSize);
+                pageSize,
+                searchTerm);
 
             return Ok(result);
         }

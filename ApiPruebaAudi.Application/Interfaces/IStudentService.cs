@@ -15,7 +15,8 @@ namespace ApiPruebaAudi.Application.Interfaces
         Task<IEnumerable<StudentDTO>> GetAllAsync();
         Task<PagedResponse<StudentDTO>> GetStudents(
         int pageNumber,
-        int pageSize);
+        int pageSize,
+        string? searchTerm = null);
         Task Update(int id, CreateStudentDTO dto);
         Task Delete(int id);
     }

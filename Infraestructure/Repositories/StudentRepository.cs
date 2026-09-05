@@ -54,10 +54,17 @@ namespace ApiPruebaAudi.Infraestructure.Repositories
 
         public async Task<PagedResponse<Student>> GetPagedAsync(
         int pageNumber,
-        int pageSize)
+        int pageSize,
+        string? searchTerm = null)
         {
             var query = _context.Students
                 .AsNoTracking();
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                query = query.Where(x =>
+                    x.Name.ToLower().Contains(searchTerm.ToLower()));
+            }
 
             var totalItems = await query.CountAsync();
 

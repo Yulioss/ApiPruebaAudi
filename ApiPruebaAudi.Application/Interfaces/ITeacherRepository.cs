@@ -19,6 +19,7 @@ namespace ApiPruebaAudi.Application.Interfaces
         Task DeleteAsync(Teacher teacher);
         Task<PagedResponse<Teacher>> GetPagedAsync(
         int pageNumber,
-        int pageSize);
+        int pageSize,
+        string? searchTerm = null);
     }
 }

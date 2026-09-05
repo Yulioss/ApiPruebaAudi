@@ -14,7 +14,8 @@ namespace ApiPruebaAudi.Application.Interfaces
         Task<IEnumerable<NoteDTO>> GetAllAsync();
         Task<PagedResponse<NoteDTO>> GetNotes(
         int pageNumber,
-        int pageSize);
+        int pageSize,
+        string? searchTerm = null);
         Task<NoteDTO> GetById(int id);
         Task Update(int id, CreateNoteDTO dto);
         Task Delete(int id);
