@@ -28,6 +28,8 @@ builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<INoteRepository, NoteRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
+builder.Services.AddScoped<IDashboardService, DashboardService>();
 builder.Services.AddAutoMapper(cfg =>
 {
     cfg.AddProfile<NoteProfile>();
