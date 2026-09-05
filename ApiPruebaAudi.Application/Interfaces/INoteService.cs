@@ -19,5 +19,6 @@ namespace ApiPruebaAudi.Application.Interfaces
         Task<NoteDTO> GetById(int id);
         Task Update(int id, CreateNoteDTO dto);
         Task Delete(int id);
+        Task GenerateNotes(int quantity);
     }
 }

@@ -95,7 +95,14 @@ namespace ApiPruebaAudi.Infraestructure.Repositories
         {
             return await _context.Notes
                 .AsNoTracking()
-                .FirstOrDefaultAsync(x => x.TeacherId == id);
+                .FirstOrDefaultAsync(x => x.NoteId == id);
+        }
+
+        public async Task AddRangeAsync(IEnumerable<Note> notes)
+        {
+            await _context.Notes.AddRangeAsync(notes);
+            await _context.SaveChangesAsync();
+            _context.ChangeTracker.Clear();
         }
     }
 }

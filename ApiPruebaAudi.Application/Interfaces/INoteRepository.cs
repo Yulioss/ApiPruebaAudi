@@ -20,5 +20,7 @@ namespace ApiPruebaAudi.Application.Interfaces
         int pageNumber,
         int pageSize,
         string? searchTerm = null);
+
+        Task AddRangeAsync(IEnumerable<Note> notes);
     }
 }

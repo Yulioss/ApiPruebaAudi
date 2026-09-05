@@ -87,6 +87,18 @@ namespace ApiPruebaAudi.Controllers
                 Message = $"Nota eliminada."
             });
         }
+
+        [HttpPost("Generate")]
+        public async Task<IActionResult> GenerateNotes(
+        [FromBody] GenerateNotesDTO dto)
+        {
+            await _noteService.GenerateNotes(dto.Quantity);
+
+            return Ok(new
+            {
+                message = $"Se generaron {dto.Quantity} notas correctamente."
+            });
+        }
     }
 }
 

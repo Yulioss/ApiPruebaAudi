@@ -127,5 +127,59 @@ namespace ApiPruebaAudi.Application.Services
 
             await _repository.DeleteAsync(note);
         }
+
+        public async Task GenerateNotes(int quantity)
+        {
+            if (quantity < 1 || quantity > 10000)
+                throw new ArgumentException(
+                    "La cantidad debe estar entre 1 y 10000.");
+
+            var students = await _studentRepository.GetAllAsync();
+            var teachers = await _teacherRepository.GetAllAsync();
+
+            if (!students.Any())
+                throw new NotFoundException(
+                    "No existen estudiantes para generar las notas.");
+
+            if (!teachers.Any())
+                throw new NotFoundException(
+                    "No existen profesores para generar las notas.");
+
+            var random = new Random();
+
+            const int batchSize = 1000;
+
+            for (int i = 0; i < quantity; i += batchSize)
+            {
+                var currentBatchSize = Math.Min(
+                    batchSize,
+                    quantity - i);
+
+                var notes = new List<Note>();
+
+                for (int j = 0; j < currentBatchSize; j++)
+                {
+                    var student = students[
+                        random.Next(students.Count)];
+
+                    var teacher = teachers[
+                        random.Next(teachers.Count)];
+
+                    notes.Add(new Note
+                    {
+                        Name = $"Nota {i + j + 1}",
+
+                        Value = Math.Round(
+                            (decimal)(random.NextDouble() * 5),
+                            1),
+
+                        StudentId = student.StudentId,
+                        TeacherId = teacher.TeacherId
+                    });
+                }
+
+                await _repository.AddRangeAsync(notes);
+            }
+        }
     }
 }
