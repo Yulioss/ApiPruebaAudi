@@ -26,6 +26,8 @@ La solución está organizada utilizando una arquitectura por capas para separar
 
 ## Arquitectura
 
+Arquitectura por capas (Layered Architecture)
+
 La solución está dividida en las siguientes capas:
 
 ```text
